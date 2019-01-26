@@ -20,10 +20,9 @@ schedule.scheduleJob({
   const today = `${year}-${month}-${date}`;
 
   if (workday.indexOf(today) > -1 || 0 < day && day < 6 && holiday.indexOf(today) === -1) {
-
-    execSync(`echo "${fireDate.toString()} shutdown!" >> ./power.log`, opt);
+    console.log(`${fireDate.toString()} shutdown!`);
     const output = execSync('npm power:off', opt);
-    execSync(`echo "${output}" >> ./power.log`, opt);
+    console.log(output);
   }
 });
 
@@ -32,8 +31,7 @@ schedule.scheduleJob({
   year: 2019,
   hour: 18,
 }, fireDate => {
-
-  execSync(`echo "${fireDate.toString()} WOL!" >> ./power.log`, opt);
+  console.log(`${fireDate.toString()} WOL!`);
   execSync('npm power:on', opt);
 });
 
@@ -43,17 +41,15 @@ schedule.scheduleJob({
 schedule.scheduleJob({
   minute: 30,
 }, fireDate => {
-
-  execSync(`echo "${fireDate.toString()} shutdown!" >> ./power.log`, opt);
+  console.log(`${fireDate.toString()} shutdown!`);
   const output = execSync('npm power:off', opt);
-  execSync(`echo "${output}" >> ./power.log`, opt);
+  console.log(output);
 });
 
 // power on job
 schedule.scheduleJob({
   minute: 20,
 }, fireDate => {
-
-  execSync(`echo "${fireDate.toString()} WOL!" >> ./power.log`, opt);
+  console.log(`${fireDate.toString()} WOL!`);
   execSync('npm power:on', opt);
 });
