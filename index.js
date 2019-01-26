@@ -6,6 +6,9 @@ const opt = {
   env: process.env,
 };
 
+const powerOn = 'wakeonlan 00:FD:45:FC:87:7D';
+const powerOff = 'ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\"';
+
 // power off job
 schedule.scheduleJob({
   year: 2019,
@@ -21,7 +24,7 @@ schedule.scheduleJob({
 
   if (workday.indexOf(today) > -1 || 0 < day && day < 6 && holiday.indexOf(today) === -1) {
     console.log(`${fireDate.toString()} shutdown!`);
-    const output = execSync('npm power:off', opt);
+    const output = execSync(powerOff, opt);
     console.log(output);
   }
 });
@@ -32,24 +35,30 @@ schedule.scheduleJob({
   hour: 18,
 }, fireDate => {
   console.log(`${fireDate.toString()} WOL!`);
-  execSync('npm power:on', opt);
+  execSync(powerOn, opt);
 });
+
+
+
+
+
+
 
 // testing
 
 // power off
 schedule.scheduleJob({
-  minute: 30,
+  minute: 53,
 }, fireDate => {
   console.log(`${fireDate.toString()} shutdown!`);
-  const output = execSync('npm power:off', opt);
+  const output = execSync(powerOff, opt);
   console.log(output);
 });
 
 // power on job
 schedule.scheduleJob({
-  minute: 35,
+  minute: 43,
 }, fireDate => {
   console.log(`${fireDate.toString()} WOL!`);
-  execSync('npm power:on', opt);
+  execSync(powerOn, opt);
 });
