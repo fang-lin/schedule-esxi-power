@@ -1,0 +1,13 @@
+{
+  "name": "schedule-power-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "power-off.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "power:on": "wakeonlan 00:FD:45:FC:87:7D",
+    "power:off": "ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\""
+  },
+  "author": "",
+  "license": "ISC"
+}
