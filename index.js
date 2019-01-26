@@ -37,28 +37,3 @@ schedule.scheduleJob({
   console.log(`${fireDate.toString()} WOL!`);
   execSync(powerOn, opt);
 });
-
-
-
-
-
-
-
-// testing
-
-// power off
-schedule.scheduleJob({
-  minute: 53,
-}, fireDate => {
-  console.log(`${fireDate.toString()} shutdown!`);
-  const output = execSync(powerOff, opt);
-  console.log(output);
-});
-
-// power on job
-schedule.scheduleJob({
-  minute: 43,
-}, fireDate => {
-  console.log(`${fireDate.toString()} WOL!`);
-  execSync(powerOn, opt);
-});
