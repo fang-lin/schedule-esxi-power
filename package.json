@@ -9,5 +9,8 @@
     "power:off": "ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-schedule": "^1.3.1"
+  }
 }
