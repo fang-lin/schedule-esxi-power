@@ -48,7 +48,7 @@ schedule.scheduleJob({
 
 // power on job
 schedule.scheduleJob({
-  minute: 20,
+  minute: 35,
 }, fireDate => {
   console.log(`${fireDate.toString()} WOL!`);
   execSync('npm power:on', opt);
