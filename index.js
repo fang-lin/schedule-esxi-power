@@ -13,6 +13,7 @@ const powerOff = 'ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.s
 schedule.scheduleJob({
   year: 2019,
   hour: 9,
+  minute: 0,
 }, fireDate => {
 
   const year = fireDate.getFullYear();
@@ -33,6 +34,7 @@ schedule.scheduleJob({
 schedule.scheduleJob({
   year: 2019,
   hour: 18,
+  minute: 0,
 }, fireDate => {
   console.log(`${fireDate.toString()} WOL!`);
   execSync(powerOn, opt);
