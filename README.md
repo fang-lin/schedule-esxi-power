@@ -1,4 +1,4 @@
 
 ```
-nohup node index.js > power.log 2>&1 &
+nohup node esxi_power.js > power.log 2>&1 &
 ```
