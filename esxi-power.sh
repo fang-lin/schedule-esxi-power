@@ -1,2 +1,2 @@
 #!/bin/sh
-node index.js
+node /home/pi/schedule-esxi-power/index.js
