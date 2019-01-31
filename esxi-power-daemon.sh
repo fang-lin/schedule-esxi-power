@@ -1,9 +1,9 @@
 #!/bin/sh
 
-NUM=`ps -c | grep schedule-esxi-power/esxi-power.js | grep -v grep | wc -l`
+NUM=`ps -c | grep esxi-power.sh | grep -v grep | wc -l`
 
 if [ "${NUM}" -lt "1" ];then
-    node /home/pi/schedule-esxi-power/esxi-power.js &
+    /home/pi/schedule-esxi-power/esxi-power.sh &
     echo "$(date): Ping daemon start" >> /home/pi/schedule-esxi-power/esxi-power.log
 fi
 
