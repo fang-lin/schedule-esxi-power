@@ -6,6 +6,8 @@ const POWER_ON = 'wakeonlan 00:FD:45:FC:87:7D';
 const PING = 'ping -c 1 -W 5 192.168.1.100 > /dev/null';
 const POWER_OFF = 'ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\"';
 
+console.log(`${(new Date).toString()} esxi-power start`);
+
 function isOnlineTime() {
   // online from 6PM to 9AM
   // online in holiday
