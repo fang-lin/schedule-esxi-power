@@ -1,10 +1,10 @@
 #!/bin/sh
 
-NUM=`ps -c | grep ping.sh | grep -v grep | wc -l`
+NUM=`ps -c | grep schedule-esxi-power/esxi-power.js | grep -v grep | wc -l`
 
 if [ "${NUM}" -lt "1" ];then
-    /vmfs/volumes/datastore1/auto_shutdown/ping.sh &
-    echo "$(date): Ping daemon start" >> /vmfs/volumes/datastore1/auto_shutdown/ping.log
+    node /home/pi/schedule-esxi-power/esxi-power.js &
+    echo "$(date): Ping daemon start" >> /home/pi/schedule-esxi-power/esxi-power.log
 fi
 
 exit 0
