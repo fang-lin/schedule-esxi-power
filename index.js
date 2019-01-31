@@ -1,4 +1,3 @@
-const schedule = require('node-schedule');
 const { execSync } = require('child_process');
 const moment = require('moment');
 const { workday, holiday } = require('./holiday');

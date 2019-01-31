@@ -1,4 +1,4 @@
 
 ```
-nohup node esxi_power.js > power.log 2>&1 &
+/home/pi/schedule-esxi-power/esxi-power-daemon.sh
 ```
