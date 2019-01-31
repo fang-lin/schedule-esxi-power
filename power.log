@@ -1,0 +1,18 @@
+
+Mon Jan 28 2019 10:29:00 GMT+0800 (China Standard Time)
+
+child_process.js:397
+    throw new ERR_INVALID_ARG_VALUE('file', file, 'cannot be empty');
+    ^
+
+TypeError [ERR_INVALID_ARG_VALUE]: The argument 'file' cannot be empty. Received ''
+    at normalizeSpawnArguments (child_process.js:397:11)
+    at spawn (child_process.js:527:38)
+    at Object.execFile (child_process.js:216:15)
+    at exec (child_process.js:147:18)
+    at Job.schedule.scheduleJob.fireDate [as job] (/Users/lin.fang/Projects/schedule-power-management/index.js:34:3)
+    at Job.invoke (/Users/lin.fang/Projects/schedule-power-management/node_modules/node-schedule/lib/schedule.js:173:10)
+    at /Users/lin.fang/Projects/schedule-power-management/node_modules/node-schedule/lib/schedule.js:552:11
+    at Timeout._onTimeout (/Users/lin.fang/Projects/schedule-power-management/node_modules/node-schedule/lib/schedule.js:510:7)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)

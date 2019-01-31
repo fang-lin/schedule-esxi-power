@@ -1,41 +1,33 @@
 const schedule = require('node-schedule');
-const { execSync } = require('child_process');
+const { exec } = require('child_process');
+const moment = require('moment');
 const { workday, holiday } = require('./holiday');
 const opt = {
   cwd: process.cwd(),
   env: process.env,
 };
 
-const powerOn = 'wakeonlan 00:FD:45:FC:87:7D';
-const powerOff = 'ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\"';
+const POWER_ON = 'wakeonlan 00:FD:45:FC:87:7D';
+const POWER_OFF = 'ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\"';
 
-// power off job
-schedule.scheduleJob({
-  year: 2019,
-  hour: 9,
-  minute: 0,
-}, fireDate => {
 
-  const year = fireDate.getFullYear();
-  const month = fireDate.getMonth() + 1;
-  const date = fireDate.getDate();
+// Power off job
+schedule.scheduleJob('* 9 * * *', fireDate => {
+  const today = moment(fireDate).format('YYYY-M-d');
   const day = fireDate.getDay();
 
-  const today = `${year}-${month}-${date}`;
-
   if (workday.indexOf(today) > -1 || 0 < day && day < 6 && holiday.indexOf(today) === -1) {
-    console.log(`${fireDate.toString()} shutdown!`);
-    const output = execSync(powerOff, opt);
-    console.log(output);
+    console.log('');
+    console.log(`${fireDate.toString()}`);
+    console.log(POWER_OFF);
+    exec(POWER_OFF, (err, stdout) => console.log(err || stdout));
   }
 });
 
-// power on job
-schedule.scheduleJob({
-  year: 2019,
-  hour: 18,
-  minute: 0,
-}, fireDate => {
-  console.log(`${fireDate.toString()} WOL!`);
-  execSync(powerOn, opt);
+// Power on job
+schedule.scheduleJob('0 * * * * *', fireDate => {
+  console.log('');
+  console.log(`${fireDate.toString()}`);
+  console.log(POWER_ON);
+  exec(POWER_ON, (err, stdout) => console.log(err || stdout));
 });
