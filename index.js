@@ -6,6 +6,10 @@ const POWER_ON = 'wakeonlan 00:FD:45:FC:87:7D';
 const PING = 'ping -c 1 -W 5 192.168.1.100 > /dev/null';
 const POWER_OFF = 'ssh -i /home/pi/.ssh/esxi root@192.168.1.100 \"/bin/shutdown.sh; halt\"';
 
+// const POWER_ON = '';
+// const PING = '';
+// const POWER_OFF = '';
+
 console.log(`${(new Date).toString()} esxi-power start`);
 
 function isOnlineTime() {
@@ -13,12 +17,10 @@ function isOnlineTime() {
   // online in holiday
   // online saturday and sunday without workday
 
-  const now = new Date();
-  const day = now.getDay();
-
-  const current = moment(now);
-  const today = current.format('YYYY-M-d');
-  const hour = current.format('H') - 0;
+  const now = moment();
+  const today = now.format('YYYY-M-D');
+  const day = now.format('d') - 0;
+  const hour = now.format('H') - 0;
 
   return (
     hour > 18 || hour < 9 ||
